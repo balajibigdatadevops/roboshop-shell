@@ -31,55 +31,55 @@ else
 fi # fi means reverse of if, indicating condition end
 
 dnf module disable nodejs -y &>> $LOGFILE
-validate $? "disabling NodeJS current version..." 
+VALIDATE $? "disabling NodeJS current version..." 
 
 dnf module enable nodejs:18 -y
-validate $? "enabling Nodejs:18 version..."
+VALIDATE $? "enabling Nodejs:18 version..."
 
 dnf install nodejs -y &>> $LOGFILE
-validate $? "Installing NodeJS..."
+VALIDATE $? "Installing NodeJS..."
 
 
 useradd roboshop
-validate $? "creating roboshop user..."
+VALIDATE $? "creating roboshop user..."
 
 mkdir -p /app
 
 curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip &>> $LOGFILE
 
-validate $? "downloading catalogue file"
+VALIDATE $? "downloading catalogue file"
 
 cd /app
 
 unzip -o /tmp/catalogue.zip &>> $LOGFILE
 
-validate $? "creating roboshop user..."
+VALIDATE $? "creating roboshop user..."
 
 cd /app
 
 npm install &>> $LOGFILE
 
-validate $? "installing npn depedencies..."
+VALIDATE $? "installing npn depedencies..."
 
 cp catalogue.service /etc/systemd/system/catalogue.service
 
-validate $? "copying catalogued service file..."
+VALIDATE $? "copying catalogued service file..."
 
 systemctl daemon-reload &>> $LOGFILE
 
-validate $? "reloading the service file changes..."
+VALIDATE $? "reloading the service file changes..."
 
 systemctl enable catalogue &>> $LOGFILE
 
-validate $? "enabling catalogue service file..."
+VALIDATE $? "enabling catalogue service file..."
 
 systemctl start catalogue &>> LOGFILE
 
-validate $? "starting catalogue service..."
+VALIDATE $? "starting catalogue service..."
 
 cp mongo.repo /etc.yum.repos.d/mongo.repo &>> LOGFILE
 
-validate $? "copying repo file"
+VALIDATE $? "copying repo file"
 
 dnf install mongodb-org-shell -y
 
