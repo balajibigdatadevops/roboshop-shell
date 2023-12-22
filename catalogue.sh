@@ -41,6 +41,7 @@ VALIDATE $? "Installing NodeJS..."
 
 
 useradd roboshop
+
 VALIDATE $? "creating roboshop user..."
 
 mkdir -p /app
@@ -61,7 +62,7 @@ npm install &>> $LOGFILE
 
 VALIDATE $? "installing npn depedencies..."
 
-cp catalogue.service /etc/systemd/system/catalogue.service
+cp /home/centos/roboshop-shell/catalog.service /etc/systemd/system/catalogue.service
 
 VALIDATE $? "copying catalogued service file..."
 
