@@ -8,7 +8,7 @@ N="\e[0m"
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
-MONGODHOST=""
+MONGODHOST="mongodb.balajibigdatadevops.online"
 
 echo "Script started at exeucint $TIMESTAMP" &>> $LOGFILE
 
@@ -78,7 +78,7 @@ systemctl start catalogue &>> LOGFILE
 
 VALIDATE $? "starting catalogue service..."
 
-cp mongo.repo /etc.yum.repos.d/mongo.repo &>> LOGFILE
+cp /home/centos/roboshop-shell/mongo.repo /etc.yum.repos.d/mongo.repo &>> LOGFILE
 
 VALIDATE $? "copying repo file"
 
