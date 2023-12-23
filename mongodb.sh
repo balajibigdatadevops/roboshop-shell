@@ -31,25 +31,25 @@ fi # fi means reverse of if, indicating condition end
 
 cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 
-VALIDATE $? "copying MONGO repo file..."
+VALIDATE $? "copying MONGO repo file"
 
 dnf install mongodb-org -y  &>> $LOGFILE
 
-VALIDATE $? "Installing MONGO DB Server..."
+VALIDATE $? "Installing MONGO DB Server"
 
 systemctl enable mongod &>> $LOGFILE
 
-VALIDATE $? "enabling mongo service..."
+VALIDATE $? "enabling mongo service"
 
 systemctl start mongod &>> $LOGFILE
 
-VALIDATE $? "Starting mongo service..."
+VALIDATE $? "Starting mongo service"
 
 sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>> $LOGFILE
 
-VALIDATE $? "replacing localhost to remote server..."
+VALIDATE $? "replacing localhost to remote server"
 
 systemctl restart mongod &>> $LOGFILE
 
-VALIDATE $? "restarting mongo server..."
+VALIDATE $? "restarting mongo server"
 

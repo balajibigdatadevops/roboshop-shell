@@ -31,10 +31,10 @@ else
 fi # fi means reverse of if, indicating condition end
 
 dnf module disable nodejs -y &>> $LOGFILE
-VALIDATE $? "disabling NodeJS current version..." 
+VALIDATE $? "disabling NodeJS current version" 
 
 dnf module enable nodejs:18 -y &>> $LOGFILE
-VALIDATE $? "enabling Nodejs:18 version..."
+VALIDATE $? "enabling Nodejs:18 version"
 
 dnf install nodejs -y &>> $LOGFILE
 VALIDATE $? "Installing NodeJS..."
@@ -74,15 +74,15 @@ VALIDATE $? "copying catalogued service file..."
 
 systemctl daemon-reload &>> $LOGFILE
 
-VALIDATE $? "reloading the service file changes..."
+VALIDATE $? "reloading the service file changes"
 
 systemctl enable catalogue &>> $LOGFILE
 
-VALIDATE $? "enabling catalogue service file..."
+VALIDATE $? "enabling catalogue service file"
 
 systemctl start catalogue &>> LOGFILE
 
-VALIDATE $? "starting catalogue service..."
+VALIDATE $? "starting catalogue service"
 
 cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>> LOGFILE
 
@@ -90,9 +90,9 @@ VALIDATE $? "copying repo file"
 
 dnf install mongodb-org-shell -y  &>> $LOGFILE
 
-VALIDATE $? "Installing mongodb client..."
+VALIDATE $? "Installing mongodb client"
 
-mongo --host $MONGODHOST </app/schema/catalogue.js
+mongo --host $MONGODHOST </app/schema/catalogue.js &>> $LOGFILE
 
-
+VALIDATE $? "Loading catalouge data into MongoDB"
 
