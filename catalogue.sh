@@ -33,7 +33,7 @@ fi # fi means reverse of if, indicating condition end
 dnf module disable nodejs -y &>> $LOGFILE
 VALIDATE $? "disabling NodeJS current version..." 
 
-dnf module enable nodejs:18 -y
+dnf module enable nodejs:18 -y &>> $LOGFILE
 VALIDATE $? "enabling Nodejs:18 version..."
 
 dnf install nodejs -y &>> $LOGFILE
@@ -78,11 +78,13 @@ systemctl start catalogue &>> LOGFILE
 
 VALIDATE $? "starting catalogue service..."
 
-cp /home/centos/roboshop-shell/mongo.repo /etc.yum.repos.d/mongo.repo &>> LOGFILE
+cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>> LOGFILE
 
 VALIDATE $? "copying repo file"
 
-dnf install mongodb-org-shell -y
+dnf install mongodb-org-shell -y  &>> $LOGFILE
+
+VALIDATE $? "Installing mongodb client..."
 
 mongo --host $MONGODHOST </app/schema/catalogue.js
 
