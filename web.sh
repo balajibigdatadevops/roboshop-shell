@@ -53,7 +53,7 @@ VALIDATE $? "downloading roboshop web application content"
 
 cd /usr/share/nginx/html &>> $LOGFILE
 
-unzip -o /tmp/web.zip
+unzip -o /tmp/web.zip &>> $LOGFILE
 
 VALIDATE $? "unzipping roboshop web zip file"
 
