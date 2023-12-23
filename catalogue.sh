@@ -39,10 +39,16 @@ VALIDATE $? "enabling Nodejs:18 version..."
 dnf install nodejs -y &>> $LOGFILE
 VALIDATE $? "Installing NodeJS..."
 
+##check roboshot user exists or not, if not there create else skip it.
 
-useradd roboshop
-
-VALIDATE $? "creating roboshop user..."
+id roboshop #if roboshop user does not exist, then it is failure
+if [ $? -ne 0 ]
+then
+    useradd roboshop
+    VALIDATE $? "roboshop user creation"
+else
+    echo -e "roboshop user already exist $Y SKIPPING $N"
+fi
 
 mkdir -p /app
 
