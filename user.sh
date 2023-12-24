@@ -56,7 +56,7 @@ fi
 
 mkdir /app 
 
-curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip
+curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip &>> $LOGFILE
 
 VALIDATE $? "downloading user zip file"
 
