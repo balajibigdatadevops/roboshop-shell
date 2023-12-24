@@ -53,9 +53,9 @@ VALIDATE $? "downloading payment zip file"
 
 cd /app
 
-unzip -o /tmp/payment.zip
+unzip -o /tmp/payment.zip &>> $LOGFILE
 
-VALIDATE $? "unzpping payment file"
+VALIDATE $? "unzipping payment file"
 
 cd /app 
 
@@ -63,13 +63,17 @@ pip3.6 install -r requirements.txt &>> $LOGFILE
 
 VALIDATE $? "installing python modules"
 
+cp /home/centos/roboshop-shell/payment.service /etc/systemd/system/payment.service &>> $LOGFILE
+
+VALIDATE $? "copying payment service file"
+
 systemctl daemon-reload &>> $LOGFILE
 
 VALIDATE $? "reloading pyament"
 
 systemctl enable payment &>> $LOGFILE
 
-VALIDATE $? "enabling payment"
+ALIDATE $? "enabling payment"
 
 systemctl start payment &>> $LOGFILE
 
