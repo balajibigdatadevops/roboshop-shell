@@ -54,7 +54,7 @@ else
     echo -e "roboshop user already exist $Y SKIPPING $N"
 fi
 
-mkdir /app 
+mkdir -p /app 
 
 curl -L -o /tmp/user.zip https://roboshop-builds.s3.amazonaws.com/user.zip &>> $LOGFILE
 
@@ -87,6 +87,10 @@ VALIDATE $? "enabling user"
 systemctl start user &>> $LOGFILE
 
 VALIDATE $? "starting user service"
+
+cp /home/cents/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
+
+VALIDATE $? "copying mongo repo file"
 
 dnf install mongodb-org-shell -y &>> $LOGFILE
 
