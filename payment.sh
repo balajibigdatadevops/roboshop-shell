@@ -73,7 +73,7 @@ VALIDATE $? "reloading pyament"
 
 systemctl enable payment &>> $LOGFILE
 
-ALIDATE $? "enabling payment"
+VALIDATE $? "enabling payment"
 
 systemctl start payment &>> $LOGFILE
 
