@@ -45,7 +45,7 @@ else
     echo -e "roboshop user already exist $Y SKIPPING $N"
 fi
 
-mkdir /app 
+mkdir -p /app 
 
 curl -L -o /tmp/payment.zip https://roboshop-builds.s3.amazonaws.com/payment.zip &>> $LOGFILE
 
