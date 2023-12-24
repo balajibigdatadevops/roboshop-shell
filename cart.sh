@@ -56,9 +56,9 @@ fi
 
 mkdir /app
 
-curl -L -o /tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip
+curl -L -o /tmp/cart.zip https://roboshop-builds.s3.amazonaws.com/cart.zip &>> $LOGFILE
 
-VALIDATE $? "downloading cart zile"
+VALIDATE $? "downloading cart zipfile"
 
 cd /app 
 
