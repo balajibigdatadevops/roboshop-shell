@@ -72,6 +72,10 @@ npm install &>> $LOGFILE
 
 VALIDATE "installing nodejs dependencies using npm command"
 
+cp /home/centos/roboshop-shell/user.service /etc/systemd/system/user.service &>> $LOGFILE
+
+VALIDATE $? "copying user service file"
+
 systemctl daemon-reload &>> $LOGFILE
 
 VALIDATE $? "reloading nodejs service"
@@ -81,6 +85,8 @@ systemctl enable user  &>> $LOGFILE
 VALIDATE $? "enabling user"
 
 systemctl start user &>> $LOGFILE
+
+VALIDATE $? "starting user service"
 
 dnf install mongodb-org-shell -y &>> $LOGFILE
 
