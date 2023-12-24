@@ -47,7 +47,7 @@ fi
 
 mkdir -p /app
 
-curl -L -o /tmp/shipping.zip https://roboshop-builds.s3.amazonaws.com/shipping.zip >>& $LOGFILE
+curl -L -o /tmp/shipping.zip https://roboshop-builds.s3.amazonaws.com/shipping.zip &>> $LOGFILE
 
 VALIDATE $? "downloading shipping file"
 
