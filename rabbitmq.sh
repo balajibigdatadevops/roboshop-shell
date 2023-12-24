@@ -39,6 +39,10 @@ curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/sc
 
 VALIDATE $? "downloading rabbitmq server"
 
+dnf install rabbitmq-server -y &>> $LOGFILE
+
+VALIDATE $? "installing rabbitmq-server"
+
 systemctl enable rabbitmq-server  &>> $LOGFILE
 
 VALIDATE $? "enabling rabbit-mq server" &>> $LOGFILE
