@@ -70,7 +70,7 @@ cd /app
 
 npm install &>> $LOGFILE
 
-VALIDATE "installing nodejs dependencies using npm command"
+VALIDATE $? "installing nodejs dependencies using npm command"
 
 cp /home/centos/roboshop-shell/user.service /etc/systemd/system/user.service &>> $LOGFILE
 
@@ -96,5 +96,8 @@ dnf install mongodb-org-shell -y &>> $LOGFILE
 
 VALIDATE $? "installing mongo server"
 
-mongo --host $MONGODHOST </app/schema/user.js
+mongo --host $MONGODHOST </app/schema/user.js &>> $LOGFILE
+
+VALIDATE $? "loading user schema into monogodb"
+
 
