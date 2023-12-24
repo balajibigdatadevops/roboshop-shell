@@ -57,6 +57,8 @@ unzip -o /tmp/web.zip &>> $LOGFILE
 
 VALIDATE $? "unzipping roboshop web zip file"
 
+cp /home/centos/roboshop-shell/roboshop.conf /etc/nginx/default.d/roboshop.conf &>> $LOGFILE 
+
 systemctl restart nginx  &>> $LOGFILE
 
 VALIDATE $? "restart nginx"
