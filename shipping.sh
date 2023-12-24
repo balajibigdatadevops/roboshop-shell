@@ -65,6 +65,10 @@ VALIDATE $? "installing depedencies"
 
 mv target/shipping-1.0.jar shipping.jar 
 
+cp /home/centos/roboshop/shipping.service /etc/systemd/system/shipping.service &>> $LOGFILE
+
+VALIDATE $? "copying shipping service file"
+
 systemctl daemon-reload &>> $LOGFILE
 
 VALIDATE $? "reloading shipping"
@@ -74,6 +78,8 @@ systemctl enable shipping &>> $LOGFILE
 VALIDATE $? "enabling shipping service"
 
 systemctl start shipping &>> $LOGFILE
+
+
 
 VALIDATE $? "starting shipping service"
 
