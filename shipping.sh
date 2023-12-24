@@ -45,9 +45,9 @@ else
     echo -e "roboshop user already exist $Y SKIPPING $N"
 fi
 
-mkdir /app
+mkdir -p /app
 
-curl -L -o /tmp/shipping.zip https://roboshop-builds.s3.amazonaws.com/shipping.zip &>> $LOGFILE
+curl -L -o /tmp/shipping.zip https://roboshop-builds.s3.amazonaws.com/shipping.zip >>& $LOGFILE
 
 VALIDATE $? "downloading shipping file"
 
@@ -59,7 +59,7 @@ VALIDATE $? "unzpping shipping file"
 
 cd /app
 
-mvn clean package $>> $LOGFILE
+mvn clean package &>> $LOGFILE
 
 VALIDATE $? "installing depedencies"
 
