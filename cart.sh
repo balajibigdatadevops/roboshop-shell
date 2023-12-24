@@ -70,3 +70,21 @@ npm install &>> $LOGFILE
 
 VALIDATE $? "installing nodejs dependencies"
 
+VALIDATE $? "Installing dependencies"
+
+# use absolute, because cart.service exists there
+cp /home/centos/roboshop-shell/cart.service /etc/systemd/system/cart.service &>> $LOGFILE
+
+VALIDATE $? "Copying cart service file"
+
+systemctl daemon-reload &>> $LOGFILE
+
+VALIDATE $? "cart daemon reload"
+
+systemctl enable cart &>> $LOGFILE
+
+VALIDATE $? "Enable cart"
+
+systemctl start cart &>> $LOGFILE
+
+VALIDATE $? "Starting cart"
